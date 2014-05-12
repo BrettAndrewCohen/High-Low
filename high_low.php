@@ -29,15 +29,22 @@
 
 // Get the number the user guessed DONE
 
-// Check the number against the winning number - if it's wrong, echo too high or too low
+// Check the number against the winning number - if it's wrong, echo too high or too low THEN ASK TO PUT ANOTHER GUESS!
 
 // If it's correct, echo "GOOD GUESS!"
 
-$winning_number = rand(0,100);
+$number_of_guesses = 1;
+
+$winning_number = mt_rand($argv[1],$argv[2]);
 
 // echo $winning_number . PHP_EOL;
 
-fwrite(STDOUT, 'Guess a number! ');
+if($argc < 2) {
+	echo "Hey! I need you to enter two numbers!" . PHP_EOL;
+	exit(1);
+}
+
+fwrite(STDOUT, "Guess a number between {$argv[1]} and {$argv[2]}! ");
 
 $guess = fgets(STDIN);
 
@@ -49,13 +56,14 @@ while ($guess != $winning_number) {
 		echo "HIGHER" . PHP_EOL;
 	}
 	
-	fwrite(STDOUT, 'Guess a number! ');
+	fwrite(STDOUT, 'Guess again! ');
 
 	$guess = fgets(STDIN);
+	$number_of_guesses++;
 }
 
 if ($guess == $winning_number) {
-	echo "GOOD GUESS! YOU WIN!" . PHP_EOL;
+	echo "GOOD GUESS! YOU WIN! It only took you {$number_of_guesses} guesses." . PHP_EOL ;
 }
 
 
