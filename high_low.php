@@ -21,13 +21,13 @@
 // - Use exit(0) to end the game
 // - If you get stuck in game, ctrl-c will exit.
 
-// Have the computer guess the random number
+// Have the computer guess the random number DONE
 
-// Define winning number
+// Define winning number DONE
 
-// Ask the user to guess the number
+// Ask the user to guess the number DONE
 
-// Get the number the user guessed 
+// Get the number the user guessed DONE
 
 // Check the number against the winning number - if it's wrong, echo too high or too low
 
@@ -35,6 +35,31 @@
 
 $winning_number = rand(0,100);
 
-echo $winning_number;
+// echo $winning_number . PHP_EOL;
+
+fwrite(STDOUT, 'Guess a number! ');
+
+$guess = fgets(STDIN);
+
+while ($guess != $winning_number) {
+	if ($guess > $winning_number){
+		echo "LOWER!" . PHP_EOL;
+	}
+	else {
+		echo "HIGHER" . PHP_EOL;
+	}
+	
+	fwrite(STDOUT, 'Guess a number! ');
+
+	$guess = fgets(STDIN);
+}
+
+if ($guess == $winning_number) {
+	echo "GOOD GUESS! YOU WIN!" . PHP_EOL;
+}
+
+
+
+
 
 
